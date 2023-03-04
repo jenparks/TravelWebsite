@@ -1,0 +1,65 @@
+{{ include('shared/header.twig') }}
+{{ include('shared/nav.twig') }}
+
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1>Available Tours</h1>
+
+        <div class="mx-auto" style="width: 40%;">
+            <form action="." method="post" id="login_form" class="aligned">
+                <label class="form-label">Choose which region to view:</label>
+                <select name="idRegion" id="idRegion" class="text form-select">
+                    {% for eachregion in region %}
+                        <option value="{{ eachregion.idRegion|e }}">
+                            {{ eachregion.regionName|e }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label>&nbsp;</label>
+                <input type="submit" name="action" class="btn btn-primary" value="Choose Region">
+            </form>
+        </div>
+
+
+        <table class="table mx-auto" style="width: 75%;">
+            <thead>
+                <tr>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Region</th>
+                    <th scope="col">Guide Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for eachtour in tour %}
+                    <tr>
+                        <th scope="row">{{ eachtour.topic }}</th>
+
+                        {% for eachregion in region %}
+                            {% if (eachregion.idRegion == eachtour.idRegion) %}
+                                <td>{{ eachregion.regionName }}</td>
+                            {% endif %}
+                        {% endfor %}
+
+                        <td>{{ eachtour.guideName }}</td>
+                        <td>{{ eachtour.price }}</td>
+                        <td><button class="btn btn-info" type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapse{{ eachtour.idTour }}" aria-expanded="false" 
+                                    aria-controls="collapse{{ eachtour.idTour }}">See photo</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <div class="collapse" id="collapse{{ eachtour.idTour }}">
+                                <img src="view/images/tour_{{ eachtour.idTour }}.jpg" alt="{{ eachtour.topic }}">
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{{ include('shared/footer.twig') }}

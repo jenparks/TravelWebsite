@@ -1,0 +1,25 @@
+{{ include('shared/header.twig') }}
+{{ include('shared/nav.twig') }}
+<main class="flex-shrink-0">
+    <div class="container">
+        <h1>Login</h1>
+        <div class="mx-auto" style="width: 60%;">
+            <form action="." method="post" id="login_form" class="aligned">
+
+                <label class="form-label">Username:</label>
+                <input type="text" class="text form-control" name="username">
+                <br>
+
+                <label class="form-label">Password:</label>
+                <input type="password" class="text form-control" name="password">
+                <br>
+
+                <label>&nbsp;</label>
+                <input type="submit" name="action" value="Login">
+            </form>
+            <p>{{ login_message|e }}</p>
+        </div>
+    </div>
+</main>
+{{ include('shared/footer.twig') }}
+

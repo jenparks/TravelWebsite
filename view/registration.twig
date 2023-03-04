@@ -1,0 +1,56 @@
+{{ include('shared/header.twig') }}
+{{ include('shared/nav.twig') }}
+<main class="flex-shrink-0">
+    <div class="container">
+        <h2>Registration</h2>
+
+        <p>
+        <form action="." method="post" id="login_form" class="aligned mx-auto" style="width: 60%;">
+            <label class="form-label">First Name:</label>
+            <span class="error-message">{{ error_firstname.message|e }}</span>
+            <input type="text" class="text form-control" name="firstName" value="{{ input.firstName }}">
+            <br>
+
+            <label class="form-label">Last Name:</label>
+            <span class="error-message">{{ error_lastname.message|e }}</span>
+            <input type="text" class="text form-control" name="lastName" value="{{ input.lastName }}">
+            <br>
+
+            <label class="form-label">Phone:</label>
+            <span class="error-message">{{ error_phone.message|e }}</span>
+            <input type="text" class="text form-control" name="phone" value="{{ input.phone }}">
+            <br>
+
+            <label class="form-label">Email:</label>
+            <span class="error-message">{{ error_email.message|e }}</span>
+            <input type="text" class="text form-control" name="email" value="{{ input.email }}">
+            <br>
+
+            <label class="form-label">Username:</label>
+            <span class="error-message">{{ error_username.message|e }}</span>
+            <input type="text" class="text form-control" name="username" value="{{ input.username }}">
+            <br>
+
+            <label class="form-label">Password:</label>
+            <span class="error-message">{{ error_password.message|e }}</span>
+            <input type="password" class="text form-control" name="password">
+            <br>
+
+            <label class="form-label">Color Preference (customizes this site, default is tallneck):</label>
+            <select name="preference" id="preference" class="text form-select">
+                {% for item in color %}
+                    <option value="{{ item.idColor|e }}">
+                        {{ item.preference|e }}
+                    </option>
+                {% endfor %}
+            </select>
+            <br>
+
+            <label>&nbsp;</label>
+            <input type="submit" name="action" class="btn btn-primary" value="Register">
+        </form></p>
+    </div>
+</main>
+</body>
+</html>
+

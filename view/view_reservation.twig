@@ -1,0 +1,52 @@
+{{ include('shared/header.twig') }}
+{{ include('shared/nav.twig') }}
+
+<main class="flex-shrink-0">
+    <div class="container">
+
+        <h1>Welcome, {{ session.name }}</h1>
+        <h1>View All Your Tours - ordered by date</h1>
+        <hr>
+        <div class="mx-auto" style="width: 40%;">
+            <form action="." method="post" id="tours_form" class="aligned">
+                <label class="form-label">Choose which region to view:</label>
+                <select name="idRegion" id="idRegion" class="text form-select">
+                    {% for eachregion in region %}
+                        <option value="{{ eachregion.idRegion|e }}">
+                            {{ eachregion.regionName|e }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <br>
+                <label>&nbsp;</label>
+                <input type="submit" name="action" class="btn btn-primary" value="Choose My Region">
+            </form>
+        </div>
+
+        <table class="table mx-auto" style="width: 75%;">
+            <thead>
+                <tr class="row">
+                    <th class="col">Date Booked</td>
+                    <th class="col">Topic</td>
+                    <th class="col">Guide Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in userOrders %}
+                    <tr class="row">
+                        {% for eachtour in tour %}
+                            {% if order.idTour == eachtour.idTour %}
+                                <td class="col">{{ order.dateBooked }}</td>
+                                <td class="col">{{ eachtour.topic }}</td>
+                                <td class="col">{{ eachtour.guideName }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</main>
+
+{{ include('shared/footer.twig') }}

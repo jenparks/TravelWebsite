@@ -1,0 +1,64 @@
+{{ include('shared/header.twig') }}
+{{ include('shared/nav.twig') }}
+
+<main class="flex-shrink-0">
+    <div class="container">
+
+        <h1>Welcome, {{ session.name }}</h1>
+        <h1>Book A Tour</h1>
+        <p class="lead instruction">All tours are approximately 1 week, though the exact 
+            days vary based on customer experience</p>
+        <hr>
+        <div class="row mt-5">
+            <div class="col">
+                <form method="post" action="." id="reservation_form">
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="idTour">~~Which tour would you like to book?</label>
+                        <select name="idTour" class="form-select mb-3" id="idTour" aria-label=".form-select-lg example">
+                            {% for eachtour in tour %}
+                                <option value="{{ eachtour.idTour|e }}">
+                                    {{ eachtour.topic|e }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="date">~~What day would you like to start?</label>
+                        <input class="form-control" type="date" id="date" name="date" required>
+                        <div class="invalid-feedback">Please enter a date</div>
+                    </div>
+                    <span class="error-message">{{ error_date.message|e }}</span>
+                    <input type="submit" name="action" class="btn btn-primary" id="calculate" value="Make Reservation">
+                </form>
+            </div>
+
+            <div class="col ml-5">
+                <table style="width: 75%;" class="table mx-auto">
+                    <thead>
+                        <tr class="row">
+                            <td class="col" colspan="2">
+                                <h2 class="mt-3">Past &amp; Future Reservations</h2>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in userOrders %}
+                            <tr class="row">
+                                <td class="col">{{ order.dateBooked }}</td>
+                                {% for eachtour in tour %}
+                                    {% if order.idTour == eachtour.idTour %}
+                                        <td class="col">{{ eachtour.topic }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+{{ include('shared/footer.twig') }}

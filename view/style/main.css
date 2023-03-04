@@ -1,0 +1,60 @@
+main>.container {
+    padding: 100px 15px 0;
+}
+
+.altnavbar {
+    background-color: #AC7889;
+}
+
+.altnavbar1 {
+    background-color: #AC7889;
+}
+
+.altnavbar2 {
+    background-color: #CF443E;
+}
+
+.altnavbar3 {
+    background-color: #5587D1;
+}
+
+.nav-item {
+    font-size: 1.3em;
+}
+
+h1 {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+.footer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    border-radius: 15%;
+}
+
+.quote {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.display-none {
+    display: none;
+}
+
+.error-message {
+    color: red;
+}
+
+.instruction {
+    font-weight: bold;
+    text-align: center;
+}
